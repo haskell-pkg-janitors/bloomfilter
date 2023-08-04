@@ -17,20 +17,13 @@ the examples directory.
 # Get involved!
 
 Please report bugs via the
-[github issue tracker](https://github.com/bos/bloomfilter).
+[github issue tracker](https://github.com/haskell-pkg-janitors/bloomfilter).
 
-Master [git repository](https://github.com/bos/bloomfilter):
+Master [git repository](https://github.com/haskell-pkg-janitors/bloomfilter):
 
-* `git clone git://github.com/bos/bloomfilter.git`
-
-There's also a [Mercurial mirror](https://bitbucket.org/bos/bloomfilter):
-
-* `hg clone https://bitbucket.org/bos/bloomfilter`
-
-(You can create and contribute changes using either Mercurial or git.)
+* `git clone git://github.com/haskell-pkg-janitors/bloomfilter.git`
 
 
 # Authors
 
-This library is written and maintained by Bryan O'Sullivan,
-<bos@serpentine.com>.
+This library is written by Bryan O'Sullivan, <bos@serpentine.com>.
