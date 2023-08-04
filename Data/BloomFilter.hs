@@ -172,9 +172,9 @@ singleton hash numBits elt = create hash numBits (\mb -> MB.insert mb elt)
 -- | Given a filter's mask and a hash value, compute an offset into
 -- a word array and a bit offset within that word.
 hashIdx :: Int -> Word32 -> (Int :* Int)
-hashIdx mask x = (y `unsafeShiftR` logBitsInHash) :* (y .&. hashMask)
+hashIdx msk x = (y `unsafeShiftR` logBitsInHash) :* (y .&. hashMask)
   where hashMask = 31 -- bitsInHash - 1
-        y = fromIntegral x .&. mask
+        y = fromIntegral x .&. msk
 
 -- | Hash the given value, returning a list of (word offset, bit
 -- offset) pairs, one per hash value.
@@ -275,7 +275,7 @@ unfold :: forall a b. (a -> [Hash]) -- ^ family of hash functions to use
         -> b                         -- ^ initial seed
         -> Bloom a
 {-# INLINE unfold #-}
-unfold hashes numBits f k = create hashes numBits (loop k)
+unfold hs numBits f k = create hs numBits (loop k)
   where loop :: forall s. b -> MBloom s a -> ST s ()
         loop j mb = case f j of
                       Just (a, j') -> MB.insert mb a >> loop j' mb
@@ -298,7 +298,7 @@ fromList :: (a -> [Hash])      -- ^ family of hash functions to use
           -> [a]                -- ^ values to populate with
           -> Bloom a
 {-# INLINE [1] fromList #-}
-fromList hashes numBits list = create hashes numBits $ forM_ list . MB.insert
+fromList hs numBits list = create hs numBits $ forM_ list . MB.insert
 
 {-# RULES "Bloom insertList . fromList" forall h n xs ys.
     insertList xs (fromList h n ys) = fromList h n (xs ++ ys)
