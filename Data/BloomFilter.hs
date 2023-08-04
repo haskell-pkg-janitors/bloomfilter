@@ -104,7 +104,7 @@ instance NFData (Bloom a) where
     rnf !_ = ()
 
 logBitsInHash :: Int
-logBitsInHash = 5 -- logPower2 bitsInHash
+logBitsInHash = 5 -- Data.BloomFilter.Mutable.logPower2 bitsInHash
 
 -- | Create an immutable Bloom filter, using the given setup function
 -- which executes in the 'ST' monad.
@@ -307,13 +307,6 @@ fromList hashes numBits = unfold hashes numBits convert
   where convert (x:xs) = Just (x, xs)
         convert _      = Nothing
 -}
-
--- | Slow, crummy way of computing the integer log of an integer known
--- to be a power of two.
-logPower2 :: Int -> Int
-logPower2 k = go 0 k
-    where go j 1 = j
-          go j n = go (j+1) (n `unsafeShiftR` 1)
 
 -- $overview
 --
