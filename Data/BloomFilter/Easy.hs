@@ -72,9 +72,14 @@ safeSuggestSizing capacity errRate
             minimum [((-k) * cap / log (1 - (errRate ** (1 / k))), k)
                      | k <- [1..100]]
         roundedBits = nextPowerOfTwo (ceiling bits)
-    in if roundedBits <= 0 || roundedBits > 0xffffffff
+    in if roundedBits <= 0 || maxbitstoolarge roundedBits
        then Left  "capacity too large to represent"
        else Right (roundedBits, truncate hashes)
+  where
+    maxbits = 0xffffffff
+    -- On 32 bit, maxbits is larger than maxBound :: Int, so wraps around
+    -- to a negative number; avoid using it in that case.
+    maxbitstoolarge n = if maxbits > 0 then n > maxbits else True
 
 -- | Behaves as 'safeSuggestSizing', but calls 'error' if given
 -- invalid or out-of-range inputs.
