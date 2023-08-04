@@ -1,6 +1,7 @@
+cabal-version:   3.4
 name:            bloomfilter
 version:         2.0.1.1
-license:         BSD3
+license:         BSD-3-Clause
 license-file:    LICENSE
 author:          Bryan O'Sullivan <bos@serpentine.com>
 maintainer:      Joey Hess <id@joeyh.name>
@@ -11,7 +12,6 @@ synopsis:        Pure and impure Bloom Filter implementations.
 category:        Data
 stability:       provisional
 build-type:      Simple
-cabal-version:   >= 1.8
 extra-source-files: README.markdown CHANGELOG.md
                  cbits/lookup3.c cbits/lookup3.h
                  examples/Makefile examples/SpellChecker.hs examples/Words.hs
