@@ -178,11 +178,6 @@ hashIdx msk x = (y `unsafeShiftR` logBitsInHash) :* (y .&. hashMask)
 
 -- | Hash the given value, returning a list of (word offset, bit
 -- offset) pairs, one per hash value.
-hashesM :: MBloom s a -> a -> [Int :* Int]
-hashesM mb elt = hashIdx (MB.mask mb) `map` MB.hashes mb elt
-
--- | Hash the given value, returning a list of (word offset, bit
--- offset) pairs, one per hash value.
 hashesU :: Bloom a -> a -> [Int :* Int]
 hashesU ub elt = hashIdx (mask ub) `map` hashes ub elt
 
