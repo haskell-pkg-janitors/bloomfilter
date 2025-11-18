@@ -79,7 +79,7 @@ safeSuggestSizing capacity errRate
     maxbits = 0xffffffff
     -- On 32 bit, maxbits is larger than maxBound :: Int, so wraps around
     -- to a negative number; avoid using it in that case.
-    maxbitstoolarge n = if maxbits > 0 then n > maxbits else True
+    maxbitstoolarge n = if maxbits > 0 then n > maxbits else False
 
 -- | Behaves as 'safeSuggestSizing', but calls 'error' if given
 -- invalid or out-of-range inputs.

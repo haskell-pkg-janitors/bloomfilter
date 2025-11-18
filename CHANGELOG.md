@@ -1,3 +1,6 @@
+#### 2.0.1.3
+* Really fix Data.BloomFilter.Easy on 32 bit.
+
 #### 2.0.1.2
 * Fix Data.BloomFilter.Easy on 32 bit to not incorrectly fail with
   "capacity too large to represent".
